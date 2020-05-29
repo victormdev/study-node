@@ -7,10 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Victor Macedo",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "nock": "^10.0.2"
   },
   "devDependencies": {
