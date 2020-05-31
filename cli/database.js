@@ -53,9 +53,13 @@ class Database {
 
         const dados = await this.obterDadosArquivo()
         const indice = dados.findIndex(item => item.id === parseInt(id))
-        if(!indice){
+        if(indice === -1){
             throw Error('O usuário informado não existe')
         }
+        // remove um único indice a partir do item 
+        dados.splice(indice, 1)
+        // registra novamente na base
+        return await this.escreverArquivo(dados)
     }
 }
 
