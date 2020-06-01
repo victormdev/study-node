@@ -18,6 +18,8 @@ async function main(){
     .option('-l, --listar', "Listar os herois")
     // ação de remoção de herois, [value] = obtém o valor
     .option('-r, --remover', "Remove um heroi pelo seu ID")
+    // ação de atuaizar o heroi pelo seu ID, [value] = obtém o valor
+    .option('-a, --atualizar [value]', "Atualiza um heroi pelo seu ID")
     .parse(process.argv)
 
     const hero = new Hero(Commander)
@@ -43,6 +45,18 @@ async function main(){
                 return
             }
             console.log('Heroi removido com sucesso!')
+        }
+        if(Commander.atualizar){
+            const idParaAtualizar = parseInt(Commander.atualizar)
+            // remove todas as chaves que estiverem undefined | null
+            const dado = JSON.stringify(hero)
+            const heroAtualizar = JSON.parse(dado)
+            const resultado = await Database.atualizar(idParaAtualizar, heroAtualizar)
+            if(!resultado){
+                console.error('Não foi possível atualizar este heroi!')
+                return
+            }
+            console.log('Heroi atualizado com sucesso!')
         }
 
     }
