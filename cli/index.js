@@ -10,8 +10,10 @@ async function main(){
     .option('-n, --nome [value]', "Nome do heroi")
     // atribui uma variável para poder, [value] = obtém o valor
     .option('-p, --poder [value]', "Poder do heroi")
-
+    // ação de cadastro de heroi
     .option('-c, --cadastrar', "Cadastrar um heroi")
+    // ação de listagem de herois
+    .option('-l, --listar', "Listar os herois")
     .parse(process.argv)
     const hero = new Hero(Commander)
     try{
@@ -22,6 +24,11 @@ async function main(){
                 return
             }
             console.log('Heroi cadastrado com sucesso!')
+        }
+        if(Commander.listar){
+            const resultado = await Database.listar()
+            console.log(resultado)
+            return
         }
     }
     catch(error){
